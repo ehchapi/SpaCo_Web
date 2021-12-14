@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>웹개발 2주차 숙제</title>
+    <style>
+        * {
+            font-family: 'Nanum Gothic Coding', monospace;
+        }
+
+        .bodysize {
+            width: 700px;
+            margin: auto;
+            border: solid 2px;
+            padding: 20px;
+        }
+
+        .title_style {
+            font-weight: bold;
+        }
+
+        .h2rightfont {
+            font-size: 15px;
+        }
+
+        .imgarea {
+            width: 500px;
+            height: 500px;
+            background-image: url("https://contents.lotteon.com/itemimage/_v171421/LD/14/98/87/36/8_/0/LD149887368_0_1.jpg/dims/resizef/720X720");
+            background-size: cover;
+            background-position: center;
+            margin: auto;
+            border: solid 1px;
+        }
+
+        .submitfont {
+            font-size: 13px;
+        }
+
+        .buttonset {
+            margin: auto;
+        }
+
+        .rateArea {
+            color: blue;
+        }
+
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            q1();
+        });
+
+        function orderfin() {
+            alert("주문이 완료되었습니다 ^^");
+        }
+
+        function q1() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    let rate = response["rate"]
+                    let temp_html = `<p>원-달러 환율:${rate}</p>`
+                    $("#rateArea").append(temp_html)
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="bodysize">
+    <div class="imgarea"></div>
+    <p>
+    <h2 class="title_style">질풍노도의 선풍기<span class="h2rightfont">가격:30,000원 / 개</span></h2>
+    </p>
+    <p>
+        생산된 지 15년 된 선풍기입니다. 중2병이 걸려서 미풍을 눌러도 강풍으로 나올 때가 있습니다. 회전을 요구하면 기분 상한다고 작동을 멈출 수 있으니 참고 바랍니다.
+    </p>
+
+    <div id="rateArea" class="rateArea">
+    </div>
+
+    <h2 class="title_style">주문하기</h2>
+    <div class="submitfont">
+
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">주문자 성함: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="성함을 입력하세요">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">수량: </label>
+            <div class="col-sm-10">
+                <input type="number" min="1" class="form-control" id="inputEmail3" placeholder="수량을 선택하세요">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">주소: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="주소를 입력하세요">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">전화번호: </label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" id="inputEmail3" placeholder="연락처를 입력하세요">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="buttonset">
+                <button type="submit" class="btn btn-primary" onclick="orderfin()">주문하기</button>
+            </div>
+        </div>      <!--제출 버튼-->
+    </div>
+    </p>
+</div>
+</body>
+
+</html>
